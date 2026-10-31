@@ -1,0 +1,61 @@
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+venv/
+.venv/
+env/
+.env
+
+# ─── Jupyter Notebooks ────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ─── ML / Model Weights ───────────────────────────────────────────────────────
+*.pt
+*.onnx
+*.engine
+*.tflite
+*.pb
+runs/
+datasets/
+data/
+
+# ─── Arduino build artifacts ──────────────────────────────────────────────────
+*.elf
+*.hex
+*.bin
+*.map
+build/
+
+# ─── OS artifacts ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE artifacts ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Media / large assets (use Git LFS or external links instead) ─────────────
+*.mp4
+*.avi
+*.mov
+*.mkv
+recordings/
+
+# ─── Credentials — NEVER commit these ────────────────────────────────────────
+.env
+*.pem
+*.key
+secrets.yaml
+config_local.*

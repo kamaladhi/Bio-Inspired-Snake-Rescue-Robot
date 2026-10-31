@@ -1,0 +1,32 @@
+MIT License
+
+Copyright (c) 2025 Jeevakamal K R, Kavya Sri B, Shatha Varsha Sree T, Guhan K B
+Amrita School of AI, Amrita Vishwa Vidyapeetham, Coimbatore, India
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+If you use this project or build on it, please cite the original paper:
+
+  Jeevakamal K R, Kavya Sri B, Shatha Varsha Sree T, Guhan K B,
+  "Bio-Inspired Snake Robot for Real-Time Victim Detection in Disaster Environments,"
+  2025 1st International Conference on Smart and Intelligent Systems (SISCON),
+  Marian Engineering College, Trivandrum, India.
+  DOI: 10.1109/SISCON66686.2025.11409077
