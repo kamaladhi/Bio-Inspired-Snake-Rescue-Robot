@@ -1,319 +1,286 @@
-# 🐍 Bio-Inspired Snake Robot for Real-Time Victim Detection in Disaster Environments
+<p align="center">
+  <img src="https://img.shields.io/badge/Award-🏆%20Best%20Paper%20IEEE%20SISCON%202025-FFD700?style=for-the-badge&labelColor=1a1a2e" alt="Best Paper Award">
+  <img src="https://img.shields.io/badge/Published-IEEE%20Xplore-00629B?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE Xplore">
+  <img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" alt="MIT License">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Arduino-C%2FC%2B%2B-00979D?style=for-the-badge&logo=arduino&logoColor=white" alt="Arduino">
+  <img src="https://img.shields.io/badge/YOLOv8-Ultralytics-purple?style=for-the-badge" alt="YOLOv8">
+</p>
+
+<h1 align="center">🐍 Bio-Inspired Snake Robot<br>for Real-Time Victim Detection in Disaster Environments</h1>
 
 <p align="center">
-
-![Award](https://img.shields.io/badge/Award-Best%20Paper%20IEEE%20SISCON%202025-gold)
-![Institution](https://img.shields.io/badge/Institution-Amrita%20Vishwa%20Vidyapeetham-blue)
-![Timeline](https://img.shields.io/badge/Timeline-Dec%202024--Apr%202025-lightgrey)
-
+  <b>Amrita School of AI · Amrita Vishwa Vidyapeetham, Coimbatore</b><br>
+  IEEE SISCON 2025 · DOI: <a href="https://doi.org/10.1109/SISCON66686.2025.11409077">10.1109/SISCON66686.2025.11409077</a>
 </p>
+
+---
 
 ## 🏆 Achievement
 
-This project was awarded the **Best Paper Award at IEEE SISCON 2025** and developed as part of the IoT and Mobile Robotics curriculum at Amrita Vishwa Vidyapeetham.
+This project received the **Best Paper Award at IEEE SISCON 2025** (1st International
+Conference on Smart and Intelligent Systems), Marian Engineering College, Trivandrum.
 
-The project combines:
-
-* Bio-inspired robotics
-* Embedded systems
-* Computer vision
-* Internet of Things (IoT)
-* Search and rescue automation
-
-to create an intelligent snake robot capable of navigating hazardous disaster environments and detecting trapped victims.
+> 📢 [LinkedIn Project Post](https://lnkd.in/p/gDC7JiFt) — 1,195+ reactions &nbsp;·&nbsp;
+> 🏆 [Award Announcement](https://lnkd.in/p/gBD9azNT) — 78+ reactions
 
 ---
 
-# 📌 Abstract
+## 📌 Abstract
 
-Search-and-rescue missions after earthquakes, landslides, and structural collapses often require navigating narrow and dangerous spaces inaccessible to humans.
+Search-and-rescue missions following earthquakes, landslides, and structural
+collapses require navigating narrow, hazardous spaces inaccessible to humans
+and conventional wheeled robots.
 
-Traditional wheeled robots struggle in highly unstructured environments.
+This project presents a **bio-inspired modular snake robot** that:
 
-This project introduces a **bio-inspired modular snake robot** capable of:
-
-* Traversing confined spaces
-* Detecting human victims
-* Monitoring environmental hazards
-* Streaming live telemetry
-* Supporting rescue operations remotely
-
-The system integrates Raspberry Pi based edge AI, Arduino-based motion control, environmental sensing, and cloud-connected IoT monitoring.
+- 🐍 Traverses confined spaces using five locomotion gaits
+- 👁️ Detects human victims in real-time using **YOLOv8n** edge AI
+- 🌡️ Monitors environmental hazards (gas, temperature, humidity, obstacles)
+- 📡 Streams live telemetry to rescuers via **Blynk IoT Cloud**
+- 🔧 Uses a fully modular, 3D-printed chassis with MG996R servo joints
 
 ---
 
-# 🌍 Problem Statement
+## 🧠 System Architecture
 
-During disasters, first responders face severe risks while searching through unstable debris.
-
-Key challenges include:
-
-* Narrow pathways
-* Toxic gases
-* Poor visibility
-* Structural instability
-
-The objective of this project is to develop a compact robotic platform that can safely explore these environments and assist rescue teams in locating victims quickly.
-
----
-
-# 🧠 System Architecture
-
-```text
-Camera Module
-      │
-      ▼
-YOLOv8 Human Detection
-      │
-      ▼
-Raspberry Pi
-      │
-      ▼
-Decision Module
-      │
-      ▼
-Arduino Mega
-      │
-      ▼
-MG996R Servo Network
-      │
-      ▼
-Snake Locomotion
-
-Environmental Sensors
-(MQ2, DHT11, Ultrasonic)
-      │
-      ▼
-Blynk IoT Dashboard
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        SNAKE RESCUE ROBOT                       │
+│                                                                 │
+│  ┌──────────────┐    ┌─────────────────┐    ┌───────────────┐  │
+│  │ Pi Camera v2 │───▶│  Raspberry Pi 4 │───▶│ Blynk Cloud   │  │
+│  └──────────────┘    │  YOLOv8n        │    │  Dashboard    │  │
+│                      │  detect_human.py│    └───────────────┘  │
+│  ┌──────────────┐    │  blynk_telemetry│         ▲             │
+│  │ DHT11  MQ2   │───▶│  .py            │         │             │
+│  │ HC-SR04      │    └────────┬────────┘    Rescue Operator     │
+│  └──────────────┘             │                                 │
+│                               ▼ Serial (9600 baud)              │
+│                      ┌─────────────────┐                        │
+│                      │  Arduino Mega   │                        │
+│                      │  Motion Control │                        │
+│                      └────────┬────────┘                        │
+│                               │ PWM                             │
+│                    ┌──────────┴──────────┐                      │
+│                 Servo 0-5 (MG996R × 6)                          │
+│               (Vertical + Horizontal per segment)               │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-# ⚙️ Key Features
+## 🐍 Locomotion Gaits
 
-### 🐍 Bio-Inspired Locomotion
+Five bio-inspired gaits implemented in Arduino C++:
 
-Implemented five locomotion modes:
+| Gait | Sketch | Principle | Best For |
+|------|--------|-----------|----------|
+| **Slithering (Forward)** | `forward_backward.ino` | Lateral sinusoidal wave | Open corridors |
+| **Slithering (Backward)** | `forward_backward.ino` | Reversed wave phase | Retreat |
+| **Sidewinding** | `sidewind.ino` | Two orthogonal waves, π/2 phase-shifted | Sandy/uneven terrain |
+| **Sidewinding Turn** | `sidewind_turn.ino` | Differential front/rear segment phases | Navigation & steering |
 
-* Slithering
-* Sidewinding
-* Rectilinear
-* Concertina
-* Rolling
+### Mathematical Basis
 
----
+Each servo joint angle follows a travelling sinusoidal wave:
 
-### 🤖 AI-Powered Victim Detection
+```
+θ_j(t) = A · sin(ω·t + j·φ) + θ₀
+```
 
-* YOLOv8n Human Detection
-* Real-time Edge Inference
-* Raspberry Pi Deployment
-* Live Camera Streaming
+where `A` = amplitude, `ω` = angular speed, `j` = segment index, `φ` = inter-segment phase lag, `θ₀` = neutral offset (90°).
 
----
+See [`docs/locomotion_gaits.md`](docs/locomotion_gaits.md) for full derivations.
 
-### 🌡️ Environmental Monitoring
+### 🎥 Gait Demonstrations
 
-Integrated sensors:
-
-* MQ2 Gas Sensor
-* DHT11 Temperature Sensor
-* DHT11 Humidity Sensor
-* Ultrasonic Obstacle Detection
-
----
-
-### ☁️ IoT Telemetry
-
-Using Blynk IoT Platform:
-
-* Remote monitoring
-* Sensor visualization
-* Live telemetry
-* Robot status tracking
+| Gait | Video |
+|------|-------|
+| Slithering | [▶ Watch](https://drive.google.com/file/d/1fyC0k1eySaU_47hNxujLM6OCG9r2XEzv/view?usp=drive_link) |
+| Sidewinding | [▶ Watch](https://drive.google.com/file/d/15Du60AjsOeIPJqi3RpOS2Sn3gD9tG7Vu/view?usp=drive_link) |
+| Rectilinear | [▶ Watch](https://drive.google.com/file/d/1SxPBMAPyzq9AAho9zV66Mh6Yw2aydoQi/view?usp=sharing) |
+| Concertina | [▶ Watch](https://drive.google.com/file/d/1sujrtSKe8Wml_VD-i0kmtL74r71EWAN7/view?usp=drive_link) |
+| Rolling | [▶ Watch](https://drive.google.com/file/d/1gm4oRElH7aiKm9JQyCPRzrn899uS_hea/view?usp=sharing) |
 
 ---
 
-# 📊 AI Performance
+## 🤖 AI-Powered Victim Detection
 
-| Metric         | Value        |
-| -------------- | ------------ |
-| Precision      | 92%          |
-| Recall         | 85%          |
-| Inference Time | ~80 ms/frame |
-| Model          | YOLOv8n      |
-| Deployment     | Raspberry Pi |
-
----
-
-# 🔧 Technology Stack
-
-## Programming
-
-* Python
-* Arduino C/C++
-
-## AI & Computer Vision
-
-* YOLOv8
-* OpenCV
-* Roboflow
-
-## IoT
-
-* Blynk Cloud
-* Sensor Telemetry
-
-## CAD & Mechanical Design
-
-* SolidWorks
-* 3D Printing
-
-## Hardware
-
-* Raspberry Pi
-* Arduino Mega
-* MG996R Servo Motors
+| Attribute | Value |
+|-----------|-------|
+| Model | YOLOv8n |
+| Task | Human (person) detection |
+| Deployment | Raspberry Pi 4 (edge) |
+| Inference Speed | ~80 ms/frame |
+| Precision | **92%** |
+| Recall | **85%** |
+| Dataset | Roboflow Human Detection |
 
 ---
 
-# 🔩 Hardware Bill of Materials
+## 🌡️ Environmental Monitoring
 
-| Component         | Purpose                  |
-| ----------------- | ------------------------ |
-| Raspberry Pi      | AI Processing            |
-| Arduino Mega      | Motion Controller        |
-| MG996R Servos     | Joint Actuation          |
-| Camera Module     | Human Detection          |
-| Ultrasonic Sensor | Obstacle Detection       |
-| MQ2 Sensor        | Gas Detection            |
-| DHT11 Sensor      | Environmental Monitoring |
-| Li-ion Battery    | Power Supply             |
+| Sensor | Pin | Measures | Alert Threshold |
+|--------|-----|----------|-----------------|
+| DHT11 | D2 | Temperature (°C), Humidity (%) | — |
+| MQ2 | A6 | Gas / smoke (raw ADC) | > 400 |
+| HC-SR04 | D7 (TRIG), D8 (ECHO) | Obstacle distance (cm) | < 20 cm |
+
+All readings are published to **Blynk Cloud** virtual pins every 2 seconds.
 
 ---
 
-# 📁 Repository Structure
+## 📁 Repository Structure
 
-```text
-Snake-rescue-robot
+```
+Snake-rescue-robot/
+├── README.md
+├── LICENSE                          — MIT License
+├── .gitignore
+├── .env.example                     — Template for secrets (copy to .env)
 │
-├── Arduino_Code
-├── RaspberryPi_Code
-├── YOLOv8_Model
-├── CAD_Designs
-├── Images
-├── Videos
-├── Research_Paper
-├── Documentation
-└── README.md
+├── arduino/
+│   ├── README.md                    — Pin mapping & upload instructions
+│   ├── forward_backward/
+│   │   └── forward_backward.ino    — Serpentine (slithering) gait
+│   ├── sidewind/
+│   │   └── sidewind.ino            — Sidewinding gait
+│   ├── sidewind_turn/
+│   │   └── sidewind_turn.ino       — Sidewinding with steering
+│   └── sensor_module/
+│       └── sensor_module.ino       — DHT11 + MQ2 + Ultrasonic → Serial CSV
+│
+├── raspberry_pi/
+│   ├── detect_human.py             — YOLOv8n inference on Pi camera
+│   ├── blynk_telemetry.py          — Sensor → Blynk Cloud relay
+│   └── requirements.txt
+│
+├── models/
+│   ├── README.md                   — Model card & training instructions
+│   └── training/
+│       └── human_detection_model.ipynb
+│
+├── cad_designs/
+│   └── README.md                   — 3D print specs & assembly guide
+│
+├── docs/
+│   └── locomotion_gaits.md         — Mathematical gait derivations
+│
+├── images/                         — Robot photos (add yours here)
+│   └── README.md
+│
+└── research/
+    └── README.md                   — IEEE paper citation & links
 ```
 
 ---
 
-# 📸 Robot Design
+## 🔧 Hardware Bill of Materials
 
-## Top View Layout
-
-![Top View](Images/top_view.jpg)
-
-The top-view layout illustrates:
-
-* Servo placement
-* Wiring architecture
-* Sensor distribution
-* Modular body segmentation
-
----
-
-## Active Head Module
-
-![Head Module](Images/head_module.jpg)
-
-The head module contains:
-
-* Camera
-* MQ2 Sensor
-* DHT11 Sensor
-* Ultrasonic Sensor
-
-allowing environmental awareness and victim detection.
+| Component | Qty | Purpose |
+|-----------|-----|---------|
+| Raspberry Pi 4 (2GB+) | 1 | Edge AI inference + IoT |
+| Arduino Mega 2560 | 1 | Servo motion control |
+| MG996R Servo Motor | 6 | Joint actuation (3 segments × 2 axes) |
+| Pi Camera Module v2 | 1 | Human detection |
+| DHT11 Sensor | 1 | Temperature & Humidity |
+| MQ2 Gas Sensor | 1 | Smoke / gas detection |
+| HC-SR04 Ultrasonic | 1 | Obstacle detection |
+| Li-ion Battery Pack | 1 | 7.4V / 5000 mAh recommended |
+| 3D Printed Chassis | — | PLA, 30–40% infill |
 
 ---
 
-# 🎥 Locomotion Demonstrations
+## ⚡ Quick Start
 
-### Slithering Gait
+### 1. Clone the Repository
 
-[[Video Link](https://drive.google.com/file/d/1fyC0k1eySaU_47hNxujLM6OCG9r2XEzv/view?usp=drive_link)]
+```bash
+git clone https://github.com/kamaladhi/Snake-rescue-robot.git
+cd Snake-rescue-robot
+```
 
-### Sidewinding Gait
+### 2. Set Up Credentials
 
-[[Video Link](https://drive.google.com/file/d/15Du60AjsOeIPJqi3RpOS2Sn3gD9tG7Vu/view?usp=drive_link)]
+```bash
+cp .env.example .env
+# Edit .env and fill in your BLYNK_TOKEN and ROBOFLOW_API_KEY
+```
 
-### Rectilinear Gait
+### 3. Upload Arduino Code
 
-[[Video Link](https://drive.google.com/file/d/1SxPBMAPyzq9AAho9zV66Mh6Yw2aydoQi/view?usp=sharing)]
+Open any sketch in `arduino/` with **Arduino IDE 2.x**, select board
+**Arduino Mega 2560**, and upload.
 
-### Concertina Gait
+### 4. Install Raspberry Pi Dependencies
 
-[[Video Link](https://drive.google.com/file/d/1sujrtSKe8Wml_VD-i0kmtL74r71EWAN7/view?usp=drive_link)]
+```bash
+cd raspberry_pi/
+pip install -r requirements.txt
+```
 
-### Rolling Gait
+### 5. Run Human Detection
 
-[[Video Link](https://drive.google.com/file/d/1gm4oRElH7aiKm9JQyCPRzrn899uS_hea/view?usp=sharing)]
+```bash
+python detect_human.py --model ../models/best.pt --show
+```
 
----
+### 6. Run Blynk Telemetry
 
-# 📈 Experimental Results
-
-### Victim Detection
-
-✅ Successful human detection in indoor and obstacle-rich environments.
-
-### Obstacle Avoidance
-
-✅ Real-time obstacle sensing and navigation.
-
-### Environmental Monitoring
-
-✅ Continuous telemetry of gas concentration, temperature, and humidity.
-
-### Remote Monitoring
-
-✅ Live sensor data visualized through Blynk IoT dashboard.
+```bash
+python blynk_telemetry.py
+```
 
 ---
 
-# 📄 Research Publication
+## 📄 Citation
 
-**Title:** Bio-Inspired Snake Robot for Real-Time Victim Detection in Disaster Environments
+If you use this project in your work, please cite:
 
-🏆 Best Paper Award — IEEE SISCON 2025
+```bibtex
+@inproceedings{jeevakamal2025snake,
+  title     = {Bio-Inspired Snake Robot for Real-Time Victim Detection in Disaster Environments},
+  author    = {Jeevakamal, K R and Kavya Sri, B and Shatha Varsha Sree, T and Guhan, K B},
+  booktitle = {2025 1st International Conference on Smart and Intelligent Systems (SISCON)},
+  year      = {2025},
+  publisher = {IEEE},
+  doi       = {10.1109/SISCON66686.2025.11409077}
+}
+```
 
-Published in IEEE Xplore.
-
-Paper and presentation materials are available in the repository documentation section.
-
----
-
-# 🚀 Future Work
-
-* Thermal Camera Integration
-* LiDAR-based Mapping
-* Autonomous Path Planning
-* SLAM Navigation
-* Multi-Robot Coordination
-* Edge AI Optimization
+Full citation details: [`research/README.md`](research/README.md)
 
 ---
 
-# 👥 Team
+## 👥 Team
 
-### Jeevakamal K R
-### Shatha Varsha Sree T
-### Guhan K B
-### Kavya Sri B
+| Name | Role |
+|------|------|
+| **Jeevakamal K R** | Robotics & Motion Control |
+| **Kavya Sri B** | AI / Computer Vision |
+| **Shatha Varsha Sree T** | IoT & Embedded Systems |
+| **Guhan K B** | CAD Design & Hardware |
 
+**Mentors:** Dr. Abhishek S · Akhil VM (PhD)  
+**Institution:** Amrita School of AI, Amrita Vishwa Vidyapeetham, Coimbatore
 
 ---
 
+## 🚀 Future Work
+
+- 🌡️ Thermal camera (AMG8833 / MLX90640) for heat-signature victim detection
+- 🗺️ LiDAR-based SLAM for autonomous navigation
+- 🤝 Multi-robot coordination
+- ⚡ Edge TPU (Coral) acceleration (~10 ms inference)
+- 🤖 ROS2 integration
+
+---
+
+<p align="center">
+  <a href="https://doi.org/10.1109/SISCON66686.2025.11409077">
+    <img src="https://img.shields.io/badge/IEEE_Xplore-Read_Paper-00629B?style=flat-square&logo=ieee" alt="IEEE Paper">
+  </a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square" alt="License">
+</p>
