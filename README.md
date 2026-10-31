@@ -45,27 +45,27 @@ This project presents a **bio-inspired modular snake robot** that:
 ## 🧠 System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        SNAKE RESCUE ROBOT                       │
-│                                                                 │
-│  ┌──────────────┐    ┌─────────────────┐    ┌───────────────┐  │
-│  │ Pi Camera v2 │───▶│  Raspberry Pi 4 │───▶│ Blynk Cloud   │  │
-│  └──────────────┘    │  YOLOv8n        │    │  Dashboard    │  │
-│                      │  detect_human.py│    └───────────────┘  │
-│  ┌──────────────┐    │  blynk_telemetry│         ▲             │
-│  │ DHT11  MQ2   │───▶│  .py            │         │             │
-│  │ HC-SR04      │    └────────┬────────┘    Rescue Operator     │
-│  └──────────────┘             │                                 │
-│                               ▼ Serial (9600 baud)              │
-│                      ┌─────────────────┐                        │
-│                      │  Arduino Mega   │                        │
-│                      │  Motion Control │                        │
-│                      └────────┬────────┘                        │
-│                               │ PWM                             │
-│                    ┌──────────┴──────────┐                      │
-│                 Servo 0-5 (MG996R × 6)                          │
-│               (Vertical + Horizontal per segment)               │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│                        SNAKE RESCUE ROBOT                        │
+│                                                                  │
+│  ┌──────────────┐    ┌─────────────────┐     ┌───────────────┐   │
+│  │ Pi Camera v2 │──▶ │  Raspberry Pi 4 ───▶ │ Blynk Cloud   │   │
+│  └──────────────┘    │  YOLOv8n        │     │  Dashboard    │   │
+│                      │  detect_human.py│     └───────────────┘   │
+│  ┌──────────────┐    │  blynk_telemetry│         ▲               │
+│  │ DHT11  MQ2   │───▶│  .py            │         │              │
+│  │ HC-SR04      │    └────────┬────────┘    Rescue Operator      │
+│  └──────────────┘             │                                  │
+│                               ▼ Serial (9600 baud)               │
+│                      ┌─────────────────┐                         │
+│                      │  Arduino Mega   │                         │
+│                      │  Motion Control │                         │
+│                      └────────┬────────┘                         │
+│                               │ PWM                              │
+│                    ┌──────────┴──────────┐                       │
+│                 Servo 0-5 (MG996R × 6)                           │
+│               (Vertical + Horizontal per segment)                │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 ---
