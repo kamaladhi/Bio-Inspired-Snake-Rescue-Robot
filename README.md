@@ -255,12 +255,12 @@ Full citation details: [`research/README.md`](research/README.md)
 
 ## 👥 Team
 
-| Name | Role |
-|------|------|
-| **Jeevakamal K R** | Robotics & Motion Control |
-| **Kavya Sri B** | AI / Computer Vision |
-| **Shatha Varsha Sree T** | IoT & Embedded Systems |
-| **Guhan K B** | CAD Design & Hardware |
+| Name | 
+|------|
+| **Jeevakamal K R** |
+| **Kavya Sri B** | 
+| **Shatha Varsha Sree T** | 
+| **Guhan K B** | 
 
 **Mentors:** Dr. Abhishek S · Akhil VM (PhD)  
 **Institution:** Amrita School of AI, Amrita Vishwa Vidyapeetham, Coimbatore
